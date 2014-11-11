@@ -1,1 +1,14 @@
 
+<ion-modal-view>
+  <ion-header-bar align-title="left">
+    <h1 class="title">{{post.title}}</h1>
+    <div class="buttons">
+      <button class="button button-outline button-positive" ng-click="hideModal()">
+      Close
+      </button>
+    </div>
+  </ion-header-bar>
+  <ion-content scroll="false">
+    <iframe height="100%" width="100%" ng-src="{{trustedUrl(post.url)}}" border="0"></iframe>
+  </ion-content>
+</ion-modal-view>

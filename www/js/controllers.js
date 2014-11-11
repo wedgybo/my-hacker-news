@@ -10,6 +10,10 @@ angular.module('starter.controllers', [])
     });
   };
 
+  $scope.viewPost = function (post) {
+    PostViewer.viewPost(post);
+  };
+
   $scope.loadPosts();
 })
 
