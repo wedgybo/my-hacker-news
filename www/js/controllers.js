@@ -4,6 +4,13 @@ angular.module('starter.controllers', [])
 })
 .controller('HackerNewsCtrl', function($scope, $ionicLoading, HackerNews, GroupNews, PostViewer) {
 
+  $scope.loadPosts = function () {
+    HackerNews.newest().then(function (posts) {
+      $scope.posts = posts.data;
+    });
+  };
+
+  $scope.loadPosts();
 })
 
 .controller('ChatsCtrl', function($scope, $ionicLoading, GroupNews) {
