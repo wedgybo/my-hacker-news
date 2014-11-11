@@ -1,4 +1,9 @@
 angular.module('starter.controllers', [])
+.filter('isMine', function (User) {
+  return function (input) {
+    return User.get().name === input;
+  };
+})
 .controller('TabCtrl', function($scope, GroupNews) {
 
 })
@@ -7,6 +12,7 @@ angular.module('starter.controllers', [])
   $scope.loadPosts = function () {
     HackerNews.newest().then(function (posts) {
       $scope.posts = posts.data;
+      $scope.$broadcast('scroll.refreshComplete');
     });
   };
 

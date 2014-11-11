@@ -27,7 +27,7 @@
       </a>
     </div>
     <ul class="comments">
-      <li class="comment" ng-repeat="comment in post.userComments">
+      <li class="comment" ng-repeat="comment in post.userComments" ng-class="{'mine': {{comment.user | isMine }}}">
         <p>{{comment.text}}<span>{{comment.user}}</span></p>
       </li>
     </ul>
