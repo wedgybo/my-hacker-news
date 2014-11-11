@@ -36,12 +36,27 @@ angular.module('starter.controllers', [])
     $scope.post = post;
   });
 
+  $scope.comment = {
+    user: User.get().name
+  };
+
+  $scope.viewPost = function (post) {
+    PostViewer.viewPost(post);
+  };
+
+  $scope.addComment = function (postId, comment) {
+    GroupNews.addComment(postId, comment);
+  };
+
   $scope.viewPost = function (post) {
     PostViewer.viewPost(post);
   };
 })
 
 .controller('AccountCtrl', function($scope, User, GroupNews) {
+
+  $scope.user = User.get();
+
   $scope.saveUser = function (user) {
     User.save(user);
     GroupNews.refresh(user.group);

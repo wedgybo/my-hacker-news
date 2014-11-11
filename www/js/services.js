@@ -19,6 +19,9 @@ angular.module('starter.services', [])
     get: function (postId) {
       return $firebase(ref.child(postId)).$asObject().$loaded();
     },
+    addComment: function (postId, comment) {
+      $firebase(ref.child(postId + '/userComments')).$asArray().$add(comment);
+    },
     refresh: refreshGroup
   };
 })
