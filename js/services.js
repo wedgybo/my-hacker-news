@@ -2,38 +2,28 @@ angular.module('starter.services', [])
 
 .factory('GroupNews', function ($q, $firebase, User) {
 
-  var metadata = {
-    newposts: 0
-  };
-
   var ref = new Firebase("https://my-hacker-news.firebaseio.com/groups/" + User.get().group || '');
 
   return {
-    metadata: metadata,
     posts: $firebase(ref).$asArray(),
     addComment: function (postId, comment) {
-      console.log('Posting comment', comment, postId);
       $firebase(ref.child(postId + '/userComments')).$asArray().$add(comment);
     },
     getPosts: function () {
-      var q = $q.defer();
-      q.resolve(this.posts.$loaded());
-      // Reset new posts once they've been fetched
-      metadata.newposts = 0;
-      return q.promise;
+      return this.posts.$loaded();
     },
     sharePost: function (post) {
       return this.posts.$add(post);
     },
     deletePost: function (post) {
-      console.log('Deleting post', post);
       return this.posts.$remove(post);
     },
     get: function (postId) {
-      var q = $q.defer();
-      q.resolve($firebase(ref.child(postId)).$asObject().$loaded());
-
-      return q.promise;
+      return $firebase(ref.child(postId)).$asObject().$loaded();
+    },
+    refresh: function () {
+      ref = new Firebase("https://my-hacker-news.firebaseio.com/groups/" + User.get().group || '');
+      this.posts = $firebase(ref).$asArray();
     }
   };
 })

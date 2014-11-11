@@ -63,16 +63,17 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AccountCtrl', function($scope, User) {
+.controller('AccountCtrl', function($scope, User, GroupNews) {
   $scope.user = User.get();
 
   $scope.saveUser = function (user) {
     User.save(user);
+    GroupNews.refresh();
   };
 })
 
-.filter('isMine', ['User', function (User) {
+.filter('isMine', function (User) {
   return function (input) {
     return User.get().name === input;
   };
-}]);
+});
