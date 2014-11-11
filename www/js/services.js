@@ -2,7 +2,25 @@ angular.module('starter.services', [])
 
 .factory('GroupNews', function ($q, $firebase, User) {
 
+  var ref;
+  var refreshGroup = function (group) {
+    ref = new Firebase("https://my-hacker-news.firebaseio.com/groups/" + group || '');
+  }
+  refreshGroup(User.get().group);
 
+  return {
+    posts: $firebase(ref).$asArray(),
+    getPosts: function () {
+      return this.posts.$loaded();
+    },
+    sharePost: function (post) {
+      return this.posts.$add(post);
+    },
+    get: function (postId) {
+      return $firebase(ref.child(postId)).$asObject().$loaded();
+    },
+    refresh: refreshGroup
+  };
 })
 
 .factory('HackerNews', function ($http) {
@@ -47,7 +65,7 @@ angular.module('starter.services', [])
 .factory('User', function ($window) {
   var user = {
     user: '',
-    group: ''
+    group: 'default'
   };
 
   user = JSON.parse($window.localStorage.getItem('user')) || user;

@@ -10,6 +10,13 @@ angular.module('starter.controllers', [])
     });
   };
 
+  $scope.sharePost = function (post) {
+    $ionicLoading.show({
+      template: 'Sharing post ' + post.title
+    });
+    GroupNews.sharePost(post).then($ionicLoading.hide);
+  };
+
   $scope.viewPost = function (post) {
     PostViewer.viewPost(post);
   };
@@ -18,7 +25,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChatsCtrl', function($scope, $ionicLoading, GroupNews) {
-
+  GroupNews.getPosts().then(function (posts) {
+    $scope.posts = posts;
+  });
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, $firebase, User, GroupNews, PostViewer) {
@@ -28,5 +37,6 @@ angular.module('starter.controllers', [])
 .controller('AccountCtrl', function($scope, User, GroupNews) {
   $scope.saveUser = function (user) {
     User.save(user);
+    GroupNews.refresh(user.group);
   };
 });
