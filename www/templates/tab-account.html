@@ -1,5 +1,16 @@
 <ion-view title="Account">
   <ion-content class="padding">
-
+    <div class="list">
+      <label class="item item-input item-label">
+        <span class="input-label">Username</span>
+        <input type="text" placeholder="Username"
+         ng-model="user.name" ng-change="saveUser(user)">
+      </label>
+      <label class="item item-input item-label">
+        <span class="input-label">Group</span>
+        <input type="text" placeholder="Group name"
+         ng-model="user.group" ng-change="saveUser(user)">
+      </label>
+    </div>
   </ion-content>
 </ion-view>

@@ -45,5 +45,20 @@ angular.module('starter.services', [])
 })
 
 .factory('User', function ($window) {
+  var user = {
+    user: '',
+    group: ''
+  };
 
+  user = JSON.parse($window.localStorage.getItem('user')) || user;
+
+  return {
+    get: function () {
+      return user;
+    },
+    save: function (updatedUser) {
+      user = updatedUser;
+      $window.localStorage.setItem('user', JSON.stringify(user));
+    }
+  };
 });

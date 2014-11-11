@@ -26,5 +26,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AccountCtrl', function($scope, User, GroupNews) {
-
+  $scope.saveUser = function (user) {
+    User.save(user);
+  };
 });
