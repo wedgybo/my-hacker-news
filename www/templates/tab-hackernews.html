@@ -1,17 +1,5 @@
 <ion-view title="Hacker News">
   <ion-content>
-  <ion-refresher
-      pulling-text="Pull to refresh..."
-      on-refresh="loadPosts()">
-  </ion-refresher>
-  <ion-list>
-      <ion-item class="item-button-right" ng-repeat="post in posts" ng-click="viewPost(post)">
-        <h2>{{post.title}}</h2>
-        <p>{{post.submitted_by}} - {{post.submitted_on}}</p>
-        <button class="button button-clear" ion-stop-event="click" ng-click="sharePost(post)">
-          <i class="icon ion-ios7-upload-outline"></i>
-        </button>
-      </ion-item>
-    </ion-list>
+
   </ion-content>
 </ion-view>

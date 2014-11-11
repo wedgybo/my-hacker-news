@@ -6,37 +6,6 @@
 -->
 <ion-view title="Group Chat">
   <ion-content padding="true">
-    <div class="list card">
-      <div class="item item-text-wrap">
-        <h2>{{post.title}}</h2>
-      </div>
 
-      <div class="item">
-        <p>
-          Post by: {{post.submitted_by}}
-        </p>
-        <p>
-          <span href="#" class="subdued">{{post.submitted_on}}</span> |
-          <span href="#" class="subdued">{{post.points}} Points</span> |
-          <span href="#" class="subdued">{{post.comments}} Comments</span>
-        </p>
-      </div>
-      <a class="item item-icon-left item-icon-right" ng-click="viewPost(post)" href="#">
-        <i class="icon ion-ios7-world"></i>
-        View post
-        <i class="icon ion-ios7-arrow-right"></i>
-      </a>
-    </div>
-    <ul class="comments">
-      <li class="comment" ng-repeat="comment in post.userComments" ng-class="{'mine': {{comment.user | isMine}}}"><p>{{comment.text}}<span>{{comment.user}}</span></p></li>
-    </ul>
-    </ion-content>
-      <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
-      <label class="item-input-wrapper">
-        <input type="text" placeholder="Type your message" ng-model="comment.text" />
-      </label>
-      <button class="button button-clear" ng-click="addComment(post.$id, comment)">
-        Send
-      </button>
-    </ion-footer-bar>
+  </ion-content>
 </ion-view>
