@@ -32,6 +32,13 @@ angular.module('starter.controllers', [])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, $firebase, User, GroupNews, PostViewer) {
 
+  GroupNews.get($stateParams.postId).then(function (post) {
+    $scope.post = post;
+  });
+
+  $scope.viewPost = function (post) {
+    PostViewer.viewPost(post);
+  };
 })
 
 .controller('AccountCtrl', function($scope, User, GroupNews) {
